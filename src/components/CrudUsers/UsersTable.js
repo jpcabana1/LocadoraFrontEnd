@@ -27,6 +27,7 @@ function UsersTable(props) {
     const selectedUser = props.find(
       (user) => user.id.toString() === e.target.value
     );
+    console.log(selectedUser);
     dispatch(defineUser(selectedUser));
     dispatch(deleteUser());
   };
