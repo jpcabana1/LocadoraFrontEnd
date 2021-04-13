@@ -1,7 +1,9 @@
 const initialState = {
-  userDefined: {},
-  users: [],
-  usersFiltered: [],
+  formUserState: {
+    userDefined: {},
+    users: [],
+    usersFiltered: [],
+  },
 };
 
 export default initialState;

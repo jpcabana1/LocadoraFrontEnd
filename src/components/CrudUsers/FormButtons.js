@@ -1,24 +1,15 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loadusers, saveUser } from "../../reducer/usersReducer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
-import { defineUser, filterUsers } from "../../actions/actions";
+import { defineUser } from "../../actions/actions";
 
 function FormButtons() {
   const dispatch = useDispatch();
-  const usersState = useSelector((state) => state.users);
 
   const onLoad = () => {
     dispatch(loadusers());
-
-    dispatch(
-      filterUsers(
-        usersState.filter((user) =>
-          user.name.includes(document.getElementById("txtSearch").value)
-        )
-      )
-    );
   };
 
   const save = () => {
