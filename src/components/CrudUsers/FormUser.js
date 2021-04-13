@@ -7,8 +7,8 @@ import { useSelector } from "react-redux";
 import "./FormUser.css";
 
 function FormUser() {
-  const usersState = useSelector((state) => state.users);
-
+  const usersState = useSelector((state) => state.formUserState.users);
+  console.log(usersState);
   return (
     <div className="FormUser">
       <UserFields />
