@@ -8,7 +8,7 @@ import "./FormUser.css";
 
 function UsersTable(props) {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.usersFiltered);
+  const users = useSelector((state) => state.formUserState.usersFiltered);
 
   const handleSelect = (e) => {
     const selectedUser = props.find(
@@ -35,13 +35,15 @@ function UsersTable(props) {
     let array = props.filter((user) =>
       user.name.includes(document.getElementById("txtSearch").value)
     );
-    console.log(array);
     dispatch(filterUsers(array));
   };
 
   return (
     <div className="FormTable">
       <Form>
+        <Form.Label>
+          <b>Pesquisar:</b>
+        </Form.Label>
         <Form.Group>
           <Form.Control
             id="txtSearch"
