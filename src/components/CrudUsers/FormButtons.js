@@ -1,18 +1,24 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { loadusers, saveUser } from "../reducer/usersReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { loadusers, saveUser } from "../../reducer/usersReducer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
-import FormUsers from "./formUsers";
-import UsersTable from "./UsersTable";
-import { defineUser } from "../actions/actions";
+import { defineUser, filterUsers } from "../../actions/actions";
 
-function App() {
-  const users = useSelector((state) => state.users);
+function FormButtons() {
   const dispatch = useDispatch();
+  const usersState = useSelector((state) => state.users);
 
   const onLoad = () => {
     dispatch(loadusers());
+
+    dispatch(
+      filterUsers(
+        usersState.filter((user) =>
+          user.name.includes(document.getElementById("txtSearch").value)
+        )
+      )
+    );
   };
 
   const save = () => {
@@ -28,8 +34,7 @@ function App() {
   };
 
   return (
-    <div>
-      <FormUsers />
+    <div className="FormButtons">
       <Button size="lg" variant="outline-warning" onClick={clear}>
         Clear
       </Button>
@@ -49,7 +54,6 @@ function App() {
       >
         Save
       </Button>
-      {UsersTable(users)}
     </div>
   );
 }
@@ -69,4 +73,4 @@ function getFields(clear) {
   return userDefined;
 }
 
-export default App;
+export default FormButtons;

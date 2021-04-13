@@ -1,18 +1,20 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Table, Button } from "react-bootstrap";
-import { useSelector, useDispatch } from "react-redux";
-import { deleteUser } from "../reducer/usersReducer";
-import { defineUser } from "../actions/actions";
+import { Table, Button, Form } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteUser } from "../../reducer/usersReducer";
+import { defineUser, filterUsers } from "../../actions/actions";
+import "./FormUser.css";
 
 function UsersTable(props) {
-  const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
+  const users = useSelector((state) => state.usersFiltered);
 
   const handleSelect = (e) => {
-    const selectedUser = users.find(
+    const selectedUser = props.find(
       (user) => user.id.toString() === e.target.value
     );
+
     dispatch(defineUser(selectedUser));
     if (selectedUser !== undefined && selectedUser !== {}) {
       document.getElementById("txtId").value = selectedUser.id;
@@ -22,15 +24,32 @@ function UsersTable(props) {
   };
 
   const handleDelete = (e) => {
-    const selectedUser = users.find(
+    const selectedUser = props.find(
       (user) => user.id.toString() === e.target.value
     );
     dispatch(defineUser(selectedUser));
     dispatch(deleteUser());
   };
 
+  const handleSearch = (e) => {
+    let array = props.filter((user) =>
+      user.name.includes(document.getElementById("txtSearch").value)
+    );
+    console.log(array);
+    dispatch(filterUsers(array));
+  };
+
   return (
-    <div>
+    <div className="FormTable">
+      <Form>
+        <Form.Group>
+          <Form.Control
+            id="txtSearch"
+            placeholder="Pesquisar usuário por nome"
+            onChange={handleSearch}
+          />
+        </Form.Group>
+      </Form>
       <Table striped bordered hover variant="dark">
         <thead>
           <tr>
@@ -42,7 +61,7 @@ function UsersTable(props) {
           </tr>
         </thead>
         <tbody>
-          {props.map((user) => (
+          {users.map((user) => (
             <tr>
               <td>
                 <Button value={user.id} variant="light" onClick={handleSelect}>

@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import { Provider } from "react-redux";
-import App from "./components/App";
+import FormUser from "./components/CrudUsers/FormUser";
 import { store } from "./store/store";
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <FormUser />
   </Provider>,
   document.getElementById("root")
 );

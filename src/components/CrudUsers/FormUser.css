@@ -1,0 +1,22 @@
+.FormFields {
+  width: 30rem;
+  float: left;
+}
+
+.FormTable {
+  width: 40rem;
+  float: left;
+}
+
+.FormButtons {
+  margin: 1rem;
+  width: 30rem;
+  float: left;
+}
+
+.FormUser {
+  width: 45rem;
+  display: grid;
+  place-items: center;
+  /* border-style: dashed; */
+}

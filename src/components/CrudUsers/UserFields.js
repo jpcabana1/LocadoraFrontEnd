@@ -1,28 +1,37 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form } from "react-bootstrap";
+import "./FormUser.css";
 
-function FormUsers() {
+function UserFields() {
   return (
-    <div>
+    <div className="FormFields">
       <Form>
-        <Form.Group controlId="formBasicUsername">
-          <Form.Label>id</Form.Label>
+        <Form.Group>
+          <Form.Label>
+            <b>id</b>
+          </Form.Label>
           <Form.Control id="txtId" placeholder="User id" readOnly />
         </Form.Group>
 
-        <Form.Group controlId="formBasicUsername">
-          <Form.Label>Nome</Form.Label>
+        <Form.Group>
+          <Form.Label>
+            <b>Nome</b>
+          </Form.Label>
           <Form.Control id="txtName" placeholder="Enter name" />
         </Form.Group>
 
-        <Form.Group controlId="formBasicUsername">
-          <Form.Label>User</Form.Label>
+        <Form.Group>
+          <Form.Label>
+            <b>Usuário</b>
+          </Form.Label>
           <Form.Control id="txtUser" placeholder="Enter username" />
         </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
+        <Form.Group>
+          <Form.Label>
+            <b>Senha</b>
+          </Form.Label>
           <Form.Control id="txtPass" type="password" placeholder="Password" />
         </Form.Group>
       </Form>
@@ -30,4 +39,4 @@ function FormUsers() {
   );
 }
 
-export default FormUsers;
+export default UserFields;
